@@ -1,15 +1,19 @@
+// INHERITANCE
 public class CheckingAccount : BankAccount
 {
     public CheckingAccount(string accNum, float initial) : base(accNum, initial) { }
 
+    // POLYMORPHISM
     public override string Withdraw(float amount)
     {
-        float balance = GetBalance();
-        if (amount <= balance + 100)  // Overdraft allowed
+        float currentBalance = GetBalance();
+        float newBalance = currentBalance - amount;
+
+        if (newBalance >= -1000f)
         {
-            Deposit(-amount);  // Reuse method
-            return $"Withdrew {amount} with overdraft. New balance: {GetBalance()}";
+            Deposit(-amount);  // Same as subtracting
+            return $"Withdrew {amount}. New balance: {GetBalance()}";
         }
-        return "Overdraft limit reached.";
+        return "Overdraft limit exceeded.";
     }
 }

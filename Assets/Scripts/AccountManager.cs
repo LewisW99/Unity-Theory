@@ -1,12 +1,12 @@
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class AccountManager : MonoBehaviour
 {
     private BankAccount currentAccount;
 
-    public InputField amountInput;
-    public Text balanceText;
+    public TMP_InputField amountInput;
+    public TextMeshProUGUI balanceText;
 
     public void CreateCheckingAccount()
     {
@@ -31,7 +31,19 @@ public class AccountManager : MonoBehaviour
 
     private void UpdateBalanceUI()
     {
-        balanceText.text = $"Balance: {currentAccount.GetBalance()}";
+        if (currentAccount != null)
+        {
+            float balance = currentAccount.GetBalance();
+            balanceText.text = $"Balance: ${balance}";
+
+            if (balance < 0)
+            {
+                balanceText.color = Color.red;
+            }
+            else
+            {
+                balanceText.color = Color.black;
+            }
+        }
     }
 }
-

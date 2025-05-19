@@ -1,5 +1,6 @@
 public class BankAccount
 {
+    // ENCAPSULATION
     private string accountNumber;
     private float balance;
 
@@ -9,6 +10,7 @@ public class BankAccount
         this.balance = initialBalance;
     }
 
+    // POLYMORPHISM
     public virtual string Withdraw(float amount)
     {
         if (amount <= balance)
@@ -19,11 +21,15 @@ public class BankAccount
         return "Insufficient funds.";
     }
 
+    // ABSTRACTION
     public void Deposit(float amount)
     {
         balance += amount;
     }
 
+    // ENCAPSULATION
     public float GetBalance() => balance;
+
+    // ENCAPSULATION
     public string GetAccountNumber() => accountNumber;
 }
